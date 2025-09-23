@@ -24,6 +24,20 @@ import Star01 from "../assets/imagesource/Star01.png";
 import single_logo from "../assets/imagesource/single_logo.png";
 import design_small_icon01 from "../assets/imagesource/design_small_icon01.png";
 import design_small_icon02 from "../assets/imagesource/design_small_icon02.png";
+import filter_icon from "../assets/imagesource/filter_icon.png";
+import magic_studio_img from "../assets/imagesource/magic_studio_img.png";
+import filters_img from "../assets/imagesource/filters_img.png";
+
+
+import magic_studio_01 from "../assets/imagesource/magic_studio_01.png";
+import magic_studio_02 from "../assets/imagesource/magic_studio_02.png";
+import magic_studio_03 from "../assets/imagesource/magic_studio_03.png";
+import magic_studio_04 from "../assets/imagesource/magic_studio_04.png";
+import magic_studio_05 from "../assets/imagesource/magic_studio_05.png";
+import empty_block from "../assets/imagesource/empty_block.png";
+
+
+
 
 
 
@@ -38,6 +52,9 @@ import { PiUploadSimpleLight } from "react-icons/pi";
 import { TfiLayoutAccordionSeparated } from "react-icons/tfi";
 import { RxButton } from "react-icons/rx";
 import { IoIosMenu } from "react-icons/io";
+import { TbClick } from "react-icons/tb";
+import { HiOutlinePaintBrush } from "react-icons/hi2";
+import { PiShoppingBagOpenLight } from "react-icons/pi";
 
 // import ActivateNewSubscriber from "../assets/imagesource/Activate_New_Subscriber.png";
 // import BalanceInfo from "../assets/imagesource/Balance_Info.png";
@@ -228,24 +245,87 @@ const Page = () => {
                                 <h3 className='text-[22px] leading-[32px] text-[#414141] font-medium pb-0'>Modules</h3>
                                 <p className='text-[16px] leading-[26px] text-[#818181] font-medium pb-2'>Drag & Drop</p>
                             </div>
+                            <div className='mb-2'>
+                                <Image src={empty_block} alt="empty_block" className='' />
+                            </div>
                         </div>
                     </div>
                 )}
             </div>
-            {/* <div className='flex justify-center w-full gap-4'>
+            <div className='flex justify-center w-full gap-4'>
                 <div className='w-[600px]'>
                     <div className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-screen'>
                         <div className='mb-3'>
-                            <h3 className='text-[16px] leading-[32px] text-[#121212] font-medium pb-4'>Graphic</h3>
+                            <p className='text-[16px] leading-[26px] text-[#818181] font-medium pb-2'>Drag & Drop your modules here</p>
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
             {isGraphicVisible && (
                 <div className='w-[400px] absolute right-4'>
                     <div className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-screen'>
                         <div className='mb-3'>
-                            <h3 className='text-[16px] leading-[32px] text-[#121212] font-medium pb-4'>Graphic</h3>
+                            <h3 className='text-[18px] leading-[32px] text-[#121212] font-semibold pb-4'>Graphic</h3>
+                        </div>
+                        <div className='mb-8'>
+                            <p className='text-[#121212] text-base font-semibold pb-3'>Select area</p>
+                            <ul>
+                                <li className='bg-white hover:bg-[#F2EAFF] border border-[#9FA0B1] rounded-[30px] px-4 mr-3 text-[16px] leading-[45px] text-[#A2A2A9] inline-flex items-center gap-2 cursor-pointer'>
+                                    <PiShoppingBagOpenLight className='text-2xl' />
+                                    All
+                                </li>
+                                <li className='bg-white hover:bg-[#F2EAFF] border border-[#9FA0B1] rounded-[30px] px-4 mr-3 px-4 text-[16px] leading-[45px] text-[#A2A2A9] inline-flex items-center gap-2 cursor-pointer'>
+                                    <TbClick className='text-2xl' />
+                                    Click
+                                </li>
+                                <li className='bg-white hover:bg-[#F2EAFF] border border-[#9FA0B1] rounded-[30px] px-4 text-[16px] leading-[45px] text-[#A2A2A9] inline-flex items-center gap-2 cursor-pointer'>
+                                    <HiOutlinePaintBrush className='text-2xl' />
+                                    Brush
+                                </li>
+                            </ul>
+                        </div>
+                        <div className='mb-8'>
+                            <div className='flex items-center gap-4'>
+                                <Image src={filter_icon} alt="filter_icon" className='' />
+                                <p className='text-[#121212] text-base font-semibold pb-0'>Adjust</p>
+                            </div>
+                        </div>
+                        <div className='mb-8'>
+                            <div className='flex items-center gap-4 mb-3'>
+                                <Image src={magic_studio_img} alt="magic_studio_img" className='' />
+                                <p className='text-[#121212] text-base font-semibold pb-0'>BG Remover</p>
+                            </div>
+                            <div className='flex gap-3'>
+                                <div className='text-center'>
+                                    <Image src={magic_studio_01} alt="magic_studio_01" className='mb-0.5' />
+                                    <p className='text-[#121212] text-base font-semibold pb-0'>BG Remover</p>
+                                </div>
+                                <div className='text-center'>
+                                    <Image src={magic_studio_02} alt="magic_studio_02" className='mb-0.5' />
+                                    <p className='text-[#121212] text-base font-semibold pb-0'>BG Generator</p>
+                                </div>
+                                <div className='text-center'>
+                                    <Image src={magic_studio_03} alt="magic_studio_03" className='mb-0.5' />
+                                    <p className='text-[#121212] text-base font-semibold pb-0'>Magic Eraser</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='mb-6'>
+                            <div className='flex items-center gap-4 mb-3'>
+                                <Image src={filters_img} alt="filters_img" className='' />
+                                <p className='text-[#121212] text-base font-semibold pb-0'>Filters</p>
+                            </div>
+                            <div className='flex gap-3'>
+                                <div className='text-center'>
+                                    <Image src={magic_studio_01} alt="magic_studio_01" className='mb-0.5' />
+                                </div>
+                                <div className='text-center'>
+                                    <Image src={magic_studio_04} alt="magic_studio_04" className='mb-0.5' />
+                                </div>
+                                <div className='text-center'>
+                                    <Image src={magic_studio_05} alt="magic_studio_05" className='mb-0.5' />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
