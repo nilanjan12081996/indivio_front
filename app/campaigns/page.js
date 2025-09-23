@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoSearchOutline } from 'react-icons/io5';
-import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination, Label, Datepicker, Textarea } from 'flowbite-react';
+import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination, Label, Datepicker, Textarea, Tooltip } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { checkAvilableSearch, getCoins, setIsClick } from '../reducers/CoinSlice';
@@ -34,6 +34,8 @@ import { CgFileDocument } from "react-icons/cg";
 import { IoIosArrowForward } from "react-icons/io";
 import { CiSearch } from "react-icons/ci";
 import { IoCloseCircleOutline } from "react-icons/io5";
+
+import { HiOutlineInformationCircle } from "react-icons/hi2";
 
 
 
@@ -115,6 +117,28 @@ const Page = () => {
     dispatch(setIsClick(true));
   };
 
+
+  const [isVisibleTopSection, setIsVisibleTopSection] = useState(true);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleClick = () => {
+    setIsVisible(!isVisible);
+    setIsVisibleTopSection(!isVisibleTopSection);
+  };
+
+  const handleCloseBottomClick = () => {
+    setIsVisible(!isVisible);
+    setIsVisibleTopSection(!isVisibleTopSection);
+  };
+
+//   console.log(isVisibleTopSection, "isVisibleTopSection 1233333");
+//   console.log(isVisible, "isVisible ddddddddddddd");
+
+  const handleCanvasClick = () => {
+    router.push("/canvas"); // navigates to /about page
+  };
+
   return (
     <div className={`${inter.className} antialiased`}>
       <div className='flex'>
@@ -171,8 +195,13 @@ const Page = () => {
                         <option>Bengali</option>
                     </Select>
                 </div>
-                <div className='form_area mt-10 flex justify-end'>
-                    <button className='next_btn'>Next <IoIosArrowForward /></button>
+                <div className='form_area mt-10 flex justify-end items-center gap-2'>
+                    <div>
+                        <Tooltip content="Continue with blank Canvas" placement="left">
+                            <HiOutlineInformationCircle className='text-[#377CFB] text-[25px]' />
+                        </Tooltip>
+                    </div>
+                    <button onClick={handleCanvasClick} className='next_btn cursor-pointer'>Next <IoIosArrowForward /></button>
                 </div>
            </div>
         </div>
@@ -186,13 +215,16 @@ const Page = () => {
                     <TextInput id="base" type="text" sizing="md" placeholder='Search Template' />
                 </div>
             </div>
+
+
+            {isVisibleTopSection && (
             <div className='item_scroll_section'>
               <div className='grid grid-cols-2 gap-8'>
                 <div className='rounded-[12px] overflow-hidden shadow-xl list_item_box'>
                     <Image src={welcome_email01} alt="welcome_email01" className='rounded-[12px] overflow-hidden' />
                     <div className='list_item_box_cont'>
                         <div className='flex justify-center items-center h-full'>
-                            <button className='view_btn'>View</button>
+                            <button onClick={handleClick} className='view_btn'>View</button>
                         </div>
                     </div>
                 </div>
@@ -254,23 +286,26 @@ const Page = () => {
                 </div>
                </div>
             </div>
+            )}
 
-            <div className='item_details_box'>
-                <div className='bg-[#ffffff] rounded-[18px] p-4 relative'>
-                    <div className='absolute right-4 top-4'>
-                        <button className='text-3xl text-black hover:text-[#c7488a] cursor-pointer'><IoCloseCircleOutline /></button>
-                    </div>
-                    <div className='text-center mb-4'>
-                        <Image src={ImagesLarge1Columns} alt="ImagesLarge1Columns" className='inline-block' />
-                    </div>
-                    <div className='w-6/12 mx-auto text-center'>
-                        <p>Make any purchase over $1500 and get cool headphones as a gift</p>
-                    </div>
-                    <div className='form_area mt-10 flex justify-end'>
-                        <button className='next_btn'>Next <IoIosArrowForward /></button>
+            {isVisible && (
+                <div className='item_details_box'>
+                    <div className='bg-[#ffffff] rounded-[18px] p-4 relative'>
+                        <div className='absolute right-4 top-4'>
+                            <button onClick={handleCloseBottomClick} className='text-3xl text-black hover:text-[#c7488a] cursor-pointer'><IoCloseCircleOutline /></button>
+                        </div>
+                        <div className='text-center mb-4'>
+                            <Image src={ImagesLarge1Columns} alt="ImagesLarge1Columns" className='inline-block' />
+                        </div>
+                        <div className='w-6/12 mx-auto text-center'>
+                            <p>Make any purchase over $1500 and get cool headphones as a gift</p>
+                        </div>
+                        <div className='form_area mt-10 flex justify-end'>
+                            <button className='next_btn'>Next <IoIosArrowForward /></button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
         </div>
       </div>
     </div>

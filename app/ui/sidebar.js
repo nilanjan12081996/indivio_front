@@ -135,7 +135,7 @@ const Sidebar = () => {
       </button>
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="px-6 py-5 lg:py-6">
-        <Link className='flex justify-center items-center' href="/dashboard" passHref>
+        <Link className='flex justify-center items-center' href="/" passHref>
           {/* <Image src={logoAdmin} alt="logoAdmin" className='w-[199px]' /> */}
           {sidebarOpen ?
             <>
@@ -183,8 +183,8 @@ const Sidebar = () => {
 
             <ul className="mb-6 flex flex-col gap-1.5 mx-4">
               <li onClick={closeNavbar}>
-                <Link href="/dashboard"
-                  className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-[#5D596C] duration-300 ease-in-out hover:bg-graydark ${pathname.includes('dashboard') &&
+                <Link href="/"
+                  className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-[#5D596C] duration-300 ease-in-out hover:bg-graydark ${pathname.includes('/') &&
                     'bg-graydark dark:bg-meta-4'
                     }`}
                   passHref>

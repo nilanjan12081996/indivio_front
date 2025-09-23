@@ -173,7 +173,7 @@ export default function Home() {
 
    return (
       <div className={`${bricolage.variable} ${nunito.variable} antialiased home_wrapper_arera`}>
-         Home
+         Dashboard
       </div>
 
    );
