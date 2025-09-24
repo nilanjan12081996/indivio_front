@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
 
         <Providers>
           <main>
-            <div className="lg:flex gap-10 bg-[#F5F5FF] p-5">
+            <div className="lg:flex gap-5 bg-[#F5F5FF] p-5">
               <div className="sidebar_area w-2/12">
                 <Sidebar />
               </div>

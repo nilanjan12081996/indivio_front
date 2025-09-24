@@ -8,7 +8,7 @@ import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoSearchOutline } from 'react-icons/io5';
-import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination } from 'flowbite-react';
+import { Select, Table, TextInput, TableBody, TableCell, TableHead, TableHeadCell, TableRow, Pagination, Textarea } from 'flowbite-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { checkAvilableSearch, getCoins, setIsClick } from '../reducers/CoinSlice';
@@ -164,6 +164,71 @@ const Page = () => {
         setIsGraphicVisible(!isGraphicVisible);
     };
 
+    // 
+
+
+    const modules = [
+        { id: 1, title: "Text" },
+        { id: 2, title: "Image" },
+        { id: 3, title: "Button" },
+        { id: 4, title: "Textarea" },
+    ];
+
+    const [canvasItems, setCanvasItems] = useState([]);
+
+    const handleDragOver = (e) => {
+      e.preventDefault(); // allow drop
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        const moduleData = e.dataTransfer.getData("module");
+        if (moduleData) {
+            const droppedModule = JSON.parse(moduleData);
+            setCanvasItems((prev) => [...prev, droppedModule]);
+        }
+    };
+
+
+    // 
+    const handleTextChange = (e, index) => {
+        const newText = e.target.value;
+        setCanvasItems((prev) => {
+            const updated = [...prev];
+            updated[index].text = newText;
+            return updated;
+        });
+    };
+
+
+    // Function to update image for a specific item
+    const handleImageChange = (e, index) => {
+        const file = e.target.files[0];
+        if (file) {
+        const updated = [...canvasItems];
+        updated[index].image = URL.createObjectURL(file);
+        setCanvasItems(updated);
+        }
+    };
+
+    // 
+    const handleTextareaChange = (e, index) => {
+        const newText = e.target.value;
+        setCanvasItems((prev) => {
+            const updated = [...prev];
+            updated[index].text = newText;
+            return updated;
+        });
+    };
+
+    // 
+    const handleRemoveItem = (index) => {
+        setCanvasItems((prevItems) =>
+            prevItems.filter((_, i) => i !== index)
+        );
+    };
+
+
   return (
     <div className={`${inter.className} antialiased`}>
       <div className='flex gap-4 relative'>
@@ -239,30 +304,123 @@ const Page = () => {
             </div>
             <div>
                 {isModulesVisible && (
-                    <div className='w-[362px] absolute left-[100px]'>
+                    <div className='w-[362px] absolute left-[100px] z-20'>
                         <div className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-screen'>
                             <div className='mb-3'>
                                 <h3 className='text-[22px] leading-[32px] text-[#414141] font-medium pb-0'>Modules</h3>
                                 <p className='text-[16px] leading-[26px] text-[#818181] font-medium pb-2'>Drag & Drop</p>
                             </div>
-                            <div className='mb-2'>
-                                <Image src={empty_block} alt="empty_block" className='' />
-                            </div>
+
+                            {modules.map((mod) => (
+                                <div
+                                    key={mod.id}
+                                    draggable
+                                    onDragStart={(e) =>
+                                        e.dataTransfer.setData("module", JSON.stringify(mod))
+                                    }
+                                   className="border rounded-lg p-4 flex items-center gap-3 shadow-sm cursor-grab hover:bg-[#F9F9FF] mb-4"
+                                >
+                                   <p className="text-[14px] font-medium">{mod.title}</p>
+                                </div>
+                            ))}
+
                         </div>
                     </div>
                 )}
             </div>
-            <div className='flex justify-center w-full gap-4'>
+            <div className='flex justify-center w-full gap-4 drag_drop_area'>
                 <div className='w-[600px]'>
-                    <div className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-screen'>
+                    <div   
+                        onDrop={handleDrop}
+                        onDragOver={handleDragOver} 
+                        className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-screen'
+                    >
                         <div className='mb-3'>
                             <p className='text-[16px] leading-[26px] text-[#818181] font-medium pb-2'>Drag & Drop your modules here</p>
                         </div>
+
+                        {/* Render dropped items */}
+
+                        <div className="space-y-3">
+                            {canvasItems.map((item, index) => (
+                                <div
+                                key={index}
+                                className="border rounded-md p-6 shadow-sm bg-[#F9F9FF] relative"
+                                >
+                                {/* Close Button */}
+                                <button
+                                    onClick={() => handleRemoveItem(index)}
+                                    className="absolute top-2 right-2 text-red-500 font-bold text-lg hover:text-red-700 z-10"
+                                >
+                                    ×
+                                </button>
+
+                                <div className="mb-4 form_area">
+                                    {item.title === "Text" && (
+                                    <TextInput
+                                        type="text"
+                                        value={item.text || ""}
+                                        onChange={(e) => handleTextChange(e, index)}
+                                        placeholder="Enter your text here"
+                                    />
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    {item.title === "Image" && (
+                                    <div className="w-32 h-20 bg-gray-200 flex items-center justify-center rounded relative overflow-hidden">
+                                        {item.image ? (
+                                        <img
+                                            src={item.image}
+                                            alt="Uploaded preview"
+                                            className="w-full h-full object-cover"
+                                        />
+                                        ) : (
+                                        <span className="text-xs text-gray-500">Image Placeholder</span>
+                                        )}
+
+                                        {/* Upload Button */}
+                                        <label className="absolute bottom-1 right-1 bg-white text-xs border px-2 py-0.5 rounded cursor-pointer shadow-sm">
+                                        Upload
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className="hidden"
+                                            onChange={(e) => handleImageChange(e, index)}
+                                        />
+                                        </label>
+                                    </div>
+                                    )}
+                                </div>
+
+                                <div className="mb-4">
+                                    {item.title === "Button" && (
+                                    <button className="px-4 py-2 bg-blue-500 text-white rounded">
+                                        Click Me
+                                    </button>
+                                    )}
+                                </div>
+
+                                <div className="mb-4 form_area">
+                                    {item.title === "Textarea" && (
+                                    <Textarea
+                                        rows={4}
+                                        value={item.text || ""}
+                                        onChange={(e) => handleTextareaChange(e, index)}
+                                        className="w-full border bg-white rounded px-2 py-1"
+                                        placeholder="Enter your text here"
+                                    />
+                                    )}
+                                </div>
+                                </div>
+                            ))}
+                        </div>
+
                     </div>
                 </div>
             </div>
             {isGraphicVisible && (
-                <div className='w-[400px] absolute right-4'>
+                <div className='w-[400px] absolute right-4 z-20'>
                     <div className='border border-[#CFCFCF] bg-white rounded-lg p-4 h-screen'>
                         <div className='mb-3'>
                             <h3 className='text-[18px] leading-[32px] text-[#121212] font-semibold pb-4'>Graphic</h3>

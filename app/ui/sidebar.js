@@ -177,11 +177,11 @@ const Sidebar = () => {
 
       <div className={`${poppins.className} sidebar_menu no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear overscroll-none`}>
         {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-2">
+        <nav className="mt-5 py-4 px-4 lg:mt-0 lg:px-2">
           {/* <!-- Menu Group --> */}
           <div>
 
-            <ul className="mb-6 flex flex-col gap-1.5 mx-4">
+            <ul className="mb-6 flex flex-col gap-1.5 mx-2">
               <li onClick={closeNavbar}>
                 <Link href="/"
                   className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-[#5D596C] duration-300 ease-in-out hover:bg-graydark ${pathname.includes('/') &&
@@ -296,8 +296,8 @@ const Sidebar = () => {
           </div>
 
 
-          <div className='mt-[180px]'>
-            <ul className="mb-6 flex flex-col gap-1.5 mx-4">
+          <div className='mt-[170px]'>
+            <ul className="mb-6 flex flex-col gap-1.5 mx-2">
               <li onClick={closeNavbar}>
                 <Link href="/settings"
                   className={`group relative flex items-center gap-2 rounded-sm py-3 px-4 font-normal text-sm text-[#5D596C] duration-300 ease-in-out hover:bg-graydark ${pathname.includes('settings') &&
