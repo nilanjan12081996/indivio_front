@@ -64,7 +64,7 @@ const Insideheader = () => {
   return (
     <div className='bg-[#ffffff] rounded-[14px] py-4 px-6 mb-6 border-l border-[#f3f4f6] dash_header'>
       <div className='lg:flex justify-between items-center'>
-        <div className='pl-[50px] lg:pl-0'>
+        <div className='pl-[50px] lg:pl-0 hidden lg:block'>
           &nbsp;
         </div>
         <div>

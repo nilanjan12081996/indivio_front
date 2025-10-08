@@ -141,8 +141,8 @@ const Page = () => {
 
   return (
     <div className={`${inter.className} antialiased`}>
-      <div className='flex'>
-        <div className='w-4/12 border-r-2 border-[#E5E5E5] pr-10'>
+      <div className='lg:flex'>
+        <div className='lg:w-4/12 lg:border-r-2 border-[#E5E5E5] lg:pr-10 mb-4 lg:mb-0'>
            <p className='text-[14px] leading-[28px] font-medium text-[#6D6D6D] pb-2'>STEPS 1 OF 6</p>
            <h2 className='text-[#5D596C] text-[24px] leading-[24px] font-bold pb-2'>Create Email Campaign</h2>
            <p className='text-[12px] leading-[20px] font-normal text-[#6F6B7D] pb-3'>Describe your campaign & let AI recommend templates</p>
@@ -205,7 +205,7 @@ const Page = () => {
                 </div>
            </div>
         </div>
-        <div className='w-8/12 pl-10'>
+        <div className='lg:w-8/12 lg:pl-10'>
             <div className='search_section_wrap mb-4'>
                 <div className="mb-1 block">
                    <Label className='text-[#a7a7a7]' htmlFor="base">Search</Label>
@@ -297,7 +297,7 @@ const Page = () => {
                         <div className='text-center mb-4'>
                             <Image src={ImagesLarge1Columns} alt="ImagesLarge1Columns" className='inline-block' />
                         </div>
-                        <div className='w-6/12 mx-auto text-center'>
+                        <div className='lg:w-6/12 mx-auto text-center'>
                             <p>Make any purchase over $1500 and get cool headphones as a gift</p>
                         </div>
                         <div className='form_area mt-10 flex justify-end'>

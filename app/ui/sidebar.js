@@ -191,6 +191,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <RxDashboard className='text-2xl' />
+                      Dashboard
                     </>
                     :
                     <>
@@ -210,6 +211,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <IoRocketOutline className='text-2xl' />
+                      Campaigns
                     </>
                     :
                     <>
@@ -228,6 +230,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <TbBrandGoogleAnalytics className='text-2xl' />
+                      Analytics
                     </>
                     :
                     <>
@@ -246,6 +249,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <FiUsers className='text-2xl' />
+                      Personas & Audience
                     </>
                     :
                     <>
@@ -264,6 +268,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <GoBook className='text-2xl' />
+                      Playbooks
                     </>
                     :
                     <>
@@ -282,6 +287,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <TbBuilding className='text-2xl' />
+                      Brand Management
                     </>
                     :
                     <>
@@ -308,6 +314,7 @@ const Sidebar = () => {
                   {sidebarOpen ?
                     <>
                       <TbSettings className='text-2xl' />
+                      Settings
                     </>
                     :
                     <>
